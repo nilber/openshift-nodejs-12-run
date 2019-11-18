@@ -20,11 +20,11 @@ if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
 fi
 
 # echo "---> Installing application source..."
-#cp -Rf /tmp/src/. ./
+cp -Rf /tmp/src/. ./
 
 echo "---> Building application from source..."
 # restaurando packages
-cd /opt/app-root/
+#cd /opt/app-root/src
 
 npm i
 ls -lh

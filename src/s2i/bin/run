@@ -7,7 +7,7 @@
 #	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
 #
 
-cd /opt/app-root
+cd /opt/app-root/src
 
 ls -l
 pwd
