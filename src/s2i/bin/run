@@ -12,4 +12,17 @@ cd /opt/app-root/src
 ls -l
 pwd
 
+
+if [[ -z "${CUSTOM_CMD}" ]]; then
+  echo "Nenhum comando customizado definido"
+else
+  echo '#!/bin/bash' > custom_cmd.sh
+  echo $CUSTOM_CMD >> custom_cmd.sh
+
+  chmod +x custom_cmd.sh
+  ./custom_cmd.sh
+fi
+
+
+
 npm start
