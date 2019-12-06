@@ -1,7 +1,14 @@
 #!/bin/bash
 
-docker build src/ -t nodejs-12-run
+DOCKER_IMAGEM=nodejs-12-run
+S2I_IMAGEM=nbmaster/openshift-nodejs-12-run
+TAG=1.1
 
-s2i build src/ nodejs-12-run nbmaster/openshift-nodejs-12-run
+# docker system prune
+# docker rmi $DOCKER_IMAGEM:$TAG $S2I_IMAGEM:$TAG
 
-#docker push nbmaster/openshift-nodejs-12-run
+# docker build src/ -t $DOCKER_IMAGEM:$TAG
+
+s2i build src/ $DOCKER_IMAGEM:$TAG $S2I_IMAGEM:$TAG
+
+docker push $S2I_IMAGEM:$TAG

@@ -19,3 +19,16 @@ spec:
     from:
       kind: DockerImage
       name: docker.io/nbmaster/openshift-nodejs-12-run
+  - name: '1.1'
+    annotations:
+      openshift.io/display-name: NodeJS 12.0
+      description: |
+        Build and run NodeJS 12.0 applications on CentOS 7.
+        IMPORTANT: Clone the root
+      iconClass: icon-nodejs
+      tags: builder,nodejs
+      supports: nodejs:12.0,nodejs,node
+      version: '1.1'
+    from:
+      kind: DockerImage
+      name: docker.io/nbmaster/openshift-nodejs-12-run:1.1

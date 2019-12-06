@@ -8,15 +8,16 @@ LABEL maintainer="Nilber Vittorazzi <nilber@vittorazzi.com>"
 ENV BUILDER_VERSION 1.0
 
 # TODO: Set labels used in OpenShift to describe the builder image
-LABEL io.k8s.description=".Net Core 3.0" \
-    io.k8s.display-name=".Net Core 3.0" \
+LABEL io.k8s.description="NodeJS 12" \
+    io.k8s.display-name="NodeJS 12" \
     io.openshift.expose-services="8080:http" \
-    io.openshift.tags="builder,dotnet-30,net-30." \
+    io.openshift.tags="builder,node,nodejs." \
     io.openshift.s2i.scripts-url="image:///usr/libexec/s2i"
 
 # TODO: Install required packages here:
 # RUN yum install -y ... && yum clean all -y
-RUN yum install -y gcc-c++ make
+RUN yum install -y gcc-c++ make && yum update tzdata -y
+
 RUN curl -sL https://rpm.nodesource.com/setup_12.x | bash -
 RUN yum install -y nodejs && yum clean all -y
 #RUN gem install asdf
@@ -31,10 +32,13 @@ COPY ./s2i/bin/ /usr/libexec/s2i
 
 # TODO: Drop the root user and make the content of /opt/app-root owned by user 1001
 RUN chown -R 1001:1001 /opt/app-root
+
+RUN ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+
 # This default user is created in the openshift/base-centos7 image
 USER 1001
 
-
+RUN date
 # TODO: Set the default port for applications built using this image
 EXPOSE 4000
 
