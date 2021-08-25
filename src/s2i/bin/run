@@ -20,6 +20,11 @@ else
   echo $CUSTOM_CMD >> custom_cmd.sh
 
   chmod +x custom_cmd.sh
+  
+  ls -l ./custom_cmd.sh
+  cat ./custom_cmd.sh
+
+  
   ./custom_cmd.sh
 fi
 

@@ -19,6 +19,17 @@ LABEL io.k8s.description="NodeJS 12" \
 RUN yum install -y gcc-c++ make && yum update tzdata -y
 
 RUN curl -sL https://rpm.nodesource.com/setup_12.x | bash -
+
+RUN yum install -y urw-fonts freetype* install gcc gcc-c++ make flex bison gperf ruby \
+  openssl-devel freetype-devel fontconfig-devel libicu-devel sqlite-devel \
+  libpng-devel libjpeg-devel
+
+RUN wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 \
+    && tar xvjf phantomjs-2.1.1-linux-x86_64.tar.bz2 -C /usr/local/share/ \
+    && rm -f phantomjs-2.1.1-linux-x86_64.tar.bz2 \
+    && ln -sf /usr/local/share/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin \
+    && phantomjs --version
+
 RUN yum install -y nodejs && yum clean all -y
 #RUN gem install asdf
 
